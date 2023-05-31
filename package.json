@@ -1,0 +1,32 @@
+{
+  "name": "cross-frame-messenger",
+  "version": "1.0.0",
+  "description": "A flexible and easy-to-use library for enabling cross-frame communication in web applications. Supports TypeScript and offers customizable options for robust messaging across different window contexts.",
+  "main": "dist/CrossFrameMessenger.js",
+  "types": "dist/CrossFrameMessenger.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prismosoft/cross-frame-messenger.git"
+  },
+  "keywords": [
+    "messaging",
+    "postmessage",
+    "communication",
+    "cross-frame",
+    "typescript"
+  ],
+  "author": "PrismoSoft <prismosoft@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prismosoft/cross-frame-messenger/issues"
+  },
+  "homepage": "https://github.com/prismosoft/cross-frame-messenger#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "typescript": "^4.2.3"
+  }
+}
