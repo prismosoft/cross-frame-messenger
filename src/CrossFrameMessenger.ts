@@ -85,7 +85,19 @@ export class CrossFrameMessenger {
         }
     }
 
-    public sendWithConfirmation(eventType: string, data: any = {}, confirmationCallback: ConfirmationCallback): void {
+    public sendWithConfirmation(eventType: string, data: any = {}): Promise<unknown> {
+        return new Promise((resolve, reject) => {
+            this._sendWithConfirmation(eventType, data, (success, data) => {
+                if(success) {
+                    resolve(data);
+                }else{
+                    reject(data);
+                }
+            })
+        });
+    }
+
+    private _sendWithConfirmation(eventType: string, data: any = {}, confirmationCallback: ConfirmationCallback): void {
         const confirmationId = this._generateUniqueId();
         this.pendingConfirmations.set(confirmationId, confirmationCallback);
         this.send(eventType, data, false, confirmationId);
