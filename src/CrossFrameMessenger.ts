@@ -75,7 +75,7 @@ export class CrossFrameMessenger {
 
         if (this.debug) {
             if(isConfirmation) {
-                console.debug(senderName + ' Sent Confirmation:', eventType, data, 'To: ' + targetOrigin);
+                console.debug(senderName + ' Sent ' + (data.success ? 'Success' : 'Failed') + ' Confirmation:', eventType, data, 'To: ' + targetOrigin);
             }else{
                 console.debug(senderName + ' Sent:', eventType, data, 'To: ' + targetOrigin);
                 if(confirmationId) {
@@ -114,11 +114,11 @@ export class CrossFrameMessenger {
             if (event.data.isConfirmation) {
                 const callback = this.pendingConfirmations.get(event.data.confirmationId);
                 if (callback) {
-                    if (this.debug) {
-                        console.debug(this.name + ' Received ' + (event.data.success ? 'Success' : 'Failed') + ' Confirmation:', typeWithoutPrefix, data, 'From: ' + event.data.name + ' - ' + event.origin);
-                    }
                     const success = data.success;
                     delete data.success;
+                    if (this.debug) {
+                        console.debug(this.name + ' Received ' + (success ? 'Success' : 'Failed') + ' Confirmation:', typeWithoutPrefix, data, 'From: ' + event.data.name + ' - ' + event.origin);
+                    }
                     callback(success, data);
                     this.pendingConfirmations.delete(event.data.confirmationId);
                 }
